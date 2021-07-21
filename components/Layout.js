@@ -1,14 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Globe from "./Globe";
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <Flex>
       <Globe />
-      <Box pos="absolute" top="0" left="0" h="100vh">
-        {children}
-      </Box>
-    </>
+      {children}
+    </Flex>
   );
 };
 

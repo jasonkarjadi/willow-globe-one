@@ -1,4 +1,5 @@
 // import gsap from "gsap";
+import { Box } from "@chakra-ui/react";
 import { withRouter } from "next/router";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -78,7 +79,7 @@ const Globe = ({ router }) => {
     scene.add(pointLight);
     // Sizes
     const sizes = {
-      width: innerWidth,
+      width: innerWidth / 2,
       height: innerHeight,
     };
     // Camera
@@ -100,7 +101,7 @@ const Globe = ({ router }) => {
     // Controls
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
-    controls.autoRotate = true;
+    // controls.autoRotate = true;
     controls.autoRotateSpeed = 0.2;
     controls.enablePan = false;
     controls.enableZoom = false;
@@ -131,7 +132,7 @@ const Globe = ({ router }) => {
     // Resize Event Listener
     addEventListener("resize", () => {
       // Update sizes
-      sizes.width = innerWidth;
+      sizes.width = innerWidth / 2;
       sizes.height = innerHeight;
       // Update camera
       camera.aspect = sizes.width / sizes.height;
@@ -151,11 +152,11 @@ const Globe = ({ router }) => {
       // Raycaster and Orbital Controls
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObject(sphere);
-      if (intersects.length > 0) {
-        controls.autoRotate = false;
-      } else {
-        controls.autoRotate = true;
-      }
+      // if (intersects.length > 0) {
+      //   controls.autoRotate = false;
+      // } else {
+      //   controls.autoRotate = true;
+      // }
       // Update Orbital Controls
       controls.update();
       // Render
@@ -165,7 +166,9 @@ const Globe = ({ router }) => {
     };
     tick();
   };
-  return <canvas ref={onCanvasLoaded}></canvas>;
+  return (
+    <Box pos="fixed" left="0" top="0" as="canvas" ref={onCanvasLoaded}></Box>
+  );
 };
 
 export default withRouter(Globe);
