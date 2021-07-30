@@ -79,8 +79,8 @@ const Globe = ({ router }) => {
     scene.add(pointLight);
     // Sizes
     const sizes = {
-      width: innerWidth / 2,
-      height: innerHeight,
+      width: 750,
+      height: 750,
     };
     // Camera
     const camera = new THREE.PerspectiveCamera(
@@ -132,8 +132,8 @@ const Globe = ({ router }) => {
     // Resize Event Listener
     addEventListener("resize", () => {
       // Update sizes
-      sizes.width = innerWidth / 2;
-      sizes.height = innerHeight;
+      sizes.width = 750;
+      sizes.height = 750;
       // Update camera
       camera.aspect = sizes.width / sizes.height;
       camera.updateProjectionMatrix();
@@ -166,9 +166,7 @@ const Globe = ({ router }) => {
     };
     tick();
   };
-  return (
-    <Box pos="fixed" left="0" top="0" as="canvas" ref={onCanvasLoaded}></Box>
-  );
+  return <Box as="canvas" ref={onCanvasLoaded} borderRadius="full"></Box>;
 };
 
 export default withRouter(Globe);
